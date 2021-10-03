@@ -12,19 +12,40 @@ import { NotImplementedError } from '../extensions/index.js';
  * 
  */
 export default function getSeason(date) {
-  let springDate;
+  let springDate = new Date(date);
   let month;
 
-  let type = typeof springDate;
-  if(type !== "date") {
+  if(!date) {
+      return "Unable to determine the time of year!";
+  }
+  if(!(date instanceof Date)) {
     throw new Error('Invalid date!');
   }
 
   try {
     month = date.getMonth();
+    date.setMonth(month);
   } catch(e) {
-    return 'Unable to determine the time of year!';
+    throw new Error('Invalid date!');
   }
 
-  return (11 === month || month < 2) ? "winter" : (5 > month ) ? "spring" : (8 > month) ? "summer" : (11 > month) ? "autumn" : 'Invalid date!';
+  switch (month) {
+    case 11:
+    case 0:
+    case 1:
+      return "winter";
+    case 2:
+    case 3:
+    case 4:
+      return "spring";
+    case 5:
+    case 6:
+    case 7:
+      return "summer";
+    case 8:
+    case 9:
+    case 10:
+      return "autumn";
+  }
+  // return (11 === month || month < 2) ? "winter" : (5 > month ) ? "spring" : (8 > month) ? "summer" : (11 > month) ? "autumn" : 'Invalid date!';
 }
