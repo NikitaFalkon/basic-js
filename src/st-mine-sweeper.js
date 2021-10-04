@@ -24,10 +24,10 @@ import { NotImplementedError } from '../extensions/index.js';
  * ]
  */
 export default function minesweeper (matrix) {
-  let finalmatrix = [];
-  for(let i = 0; i < matrix.length; i++) {
-    for(let j = 0; j < matrix[i].length; j++) {
-      
-    }
-  }
+  // let finalmatrix = [];
+  // for(let i = 0; i < matrix.length; i++) {
+  //   for(let j = 0; j < matrix[i].length; j++) {
+  //     if(i+1 < matrix.length)
+  //   }
+  // }
 }
