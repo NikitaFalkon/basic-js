@@ -10,25 +10,33 @@ import { NotImplementedError } from '../extensions/index.js';
  * For aabbbc should return 2a3bc
  *
  */
-export default function encodeLine(line) {
-  let arr = line.split('');
-  let finalarr = [];
-  let fin = 0;
-  for (let i = 0; i < arr.length; i++) {
-    let j = i+1;
-    finalarr[fin]=arr[i];
-
-    while (arr[i] === arr[j] && j < arr.length) {
-      finalarr[fin] += arr[i];
-      j++;
+export default function encodeLine(str) {
+  let arr = str.split('');
+  let part = "";
+  let finalstr = "";
+  for(let i = 0; i < arr.length; i++) {
+    if(part.search(arr[i]) !== -1 || part === "") {
+      part = part + arr[i];
+    } else {
+      finalstr = finalstr + f(part);
+      part = "";
+      part = part + arr[i];
     }
-
-    fin++;
-  }
-
-  for(let i = 0; i < finalarr.length; i++) {
-    if(finalarr[i].length > 1) {
-      finalarr = finalarr[i]
+    
+    if(i === arr.length-1) {
+      finalstr = finalstr + f(part);
     }
   }
+
+  return finalstr;
+}
+
+function f(part) {
+  let parti;
+  if(part.length > 1) {
+    parti = part.length + part[0];
+  } else {
+    parti = part;
+  }
+  return  parti;
 }
